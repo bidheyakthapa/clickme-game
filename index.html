@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        color: lightskyblue;
+      }
+      h1 {
+        background-color: #fff;
+        width: fit-content;
+        margin-left: 45%;
+        display: flex;
+        justify-content: center;
+        box-shadow: 0px 0px 15px #fff;
+        padding: 0px 10px;
+        align-items: center;
+      }
+      button {
+        transition: 3s;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        background-color: #48d9e3;
+        color: #fff;
+        box-shadow: 0px 0px 20px #48d9e3;
+        font-size: large;
+        margin-left: 20px;
+      }
+      .theme-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start" onclick="startCountdown()">Start Game</button>
+    <h2>Time remaining: <span id="countdown">10</span></h2>
+    <h1>Win Count : <span id="winCount"> 0</span></h1>
+
+    <button id="myButton">Click Me!</button><br />
+    <div class="theme-container">
+      <input type="radio" name="theme" id="light" />
+      <label for="light">light</label>
+      <input type="radio" name="theme" id="dark" />
+      <label for="dark">dark</label>
+    </div>
+
+    <script>
+      const myButton = document.getElementById("myButton");
+      const start = document.getElementById("start");
+      let win = 0;
+      let gameSarted = false;
+      myButton.addEventListener("mouseover", function () {
+        if (gameSarted) {
+          let x = Math.floor(Math.random() * 500);
+          let y = Math.floor(Math.random() * 1200);
+          myButton.style.marginTop = x + "px";
+          myButton.style.marginLeft = y + "px";
+        }
+      });
+      myButton.addEventListener("click", function () {
+        if (gameSarted) {
+          win = win + 1;
+          document.getElementById("winCount").innerHTML = win;
+        }
+      });
+      function startCountdown() {
+        let seconds = 10;
+        const countdownElement = document.getElementById("countdown");
+
+        start.disabled = true;
+        gameSarted = true;
+        const countdownInterval = setInterval(function () {
+          seconds--;
+          countdownElement.textContent = seconds;
+
+          if (seconds <= 0) {
+            clearInterval(countdownInterval);
+            alert("You score was" + win);
+            win = 0;
+            document.getElementById("winCount").innerHTML = win;
+            countdownElement.innerHTML = "10";
+            start.disabled = false;
+            gameSarted = false;
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
