@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  transition: 1ms;
+}
+
+body.dark {
+  background-color: #333;
+  color: lightskyblue;
+}
+
+body.light {
+  background-color: #f8f8ff;
+  color: #333;
+}
+
+#playing h1 {
+  background-color: #fff;
+  width: fit-content;
+  margin-left: 45%;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 0px 15px #fff;
+  padding: 0px 10px;
+  align-items: center;
+}
+
+button {
+  transition: 3s;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #fff;
+  background-color: #48d9e3;
+  color: #fff;
+  box-shadow: 0px 0px 20px #48d9e3;
+  font-size: large;
+  margin-left: 20px;
+}
+
+#menu {
+  margin: 17% 0 0 42%;
+  border: 1px solid #fff;
+  padding: 20px 0 20px;
+  width: 250px;
+  text-align: center;
+}
+
+#menu h1{
+  margin-top: 0;
+}
+
+#menu button {
+  width: 170px;
+  border-radius: 12px;
+  margin-left: 0;
+}
+
+#menu button:hover {
+  text-decoration: underline;
+}
+
+.theme-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+}
+
+#menu[aria-hidden="true"],
+#playing[aria-hidden="true"],
+#levels[aria-hidden="true"],
+#gamestat[aria-hidden="true"] {
+  display: none;
+}
+
+img {
+  height: 12px;
+  float: right;
+}
+
+#levelopt span {
+  font-size: small;
+}
+
+#levels button {
+  font-size: 16px;
+  padding: 5px;
+}
+
+#gamestat {
+  border: 1px solid white;
+  text-align: center;
+  width: 250px;
+  z-index: 2;
+  padding: 10px 0px 30px;
+  margin: 20% 0 0 42%;
+}
+
+#gamestat button {
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 10px;
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
+#finalscore {
+  font-size: larger;
+  font-weight: 800;
+}
