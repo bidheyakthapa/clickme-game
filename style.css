@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  transition: 1ms;
+  transition: background-color 0.75s;
 }
 
 body.dark {
@@ -46,7 +46,7 @@ button {
   text-align: center;
 }
 
-#menu h1{
+#menu h1 {
   margin-top: 0;
 }
 
@@ -65,6 +65,48 @@ button {
   bottom: 0;
   left: 0;
   margin: 10px;
+}
+
+.toggle {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.toggle__input {
+  display: none;
+}
+
+.toggle__button {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #333;
+  width: 60px;
+  height: 25px;
+  border-radius: 18px;
+  transition: all 0.75s ease;
+}
+
+.toggle__input:checked + .toggle__button {
+  background-color: #333;
+}
+
+.toggle__icon {
+  content: url(dark-mode.png);
+  width: 13px;
+  height: 13px;
+  position: relative;
+  top: 5px;
+  left: 5px;
+  transition: all 0.75s ease;
+}
+
+.toggle__input:checked + .toggle__button .toggle__icon {
+  content: url(light-mode.png);
+  position: relative;
+  top: 5px;
+  left: 42px;
 }
 
 #menu[aria-hidden="true"],

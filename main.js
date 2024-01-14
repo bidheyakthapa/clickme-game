@@ -6,6 +6,8 @@ const easy = document.getElementById("easy");
 const medium = document.getElementById("medium");
 const hard = document.getElementById("hard");
 const gameStat = document.getElementById("gamestat");
+const toggleInput = document.getElementById("toggle");
+const toggleButton = document.querySelector(".toggle__button");
 
 let win = 0;
 let gameStarted = false;
@@ -17,23 +19,16 @@ function applyTheme() {
   // Remove both "light" and "dark" classes from the body element
   document.body.classList.remove("light", "dark");
 
-  // Find the currently checked radio button with the name "theme"
-  const selectedTheme = document.querySelector(
-    'input[name="theme"]:checked'
-  ).id;
-
-  // Add the ID of the checked radio button as a class to the body element
-  document.body.classList.add(selectedTheme);
+  // Add the "dark" class to the body element if the toggle is checked
+  if (toggleInput.checked) {
+    document.body.classList.add("light");
+  } else {
+    document.body.classList.add("dark");
+  }
 }
 
-// Use the forEach method to iterate over all radio buttons with the name "theme"
-document.querySelectorAll('input[name="theme"]').forEach((radio) => {
-  // Add an event listener to each radio button for the "change" event
-  radio.addEventListener("change", applyTheme);
-});
-
-// Apply the theme immediately when the page loads
-applyTheme();
+// Add an event listener to the toggle input for the "change" event
+toggleInput.addEventListener("change", applyTheme);
 
 document.getElementById("levelopt").addEventListener("click", function () {
   const cat = levels.getAttribute("aria-hidden");
@@ -44,26 +39,30 @@ document.getElementById("levelopt").addEventListener("click", function () {
   }
 });
 
+let speed = 1;
+
 easy.onclick = function () {
   lvl.innerHTML = "(EASY)";
   levels.setAttribute("aria-hidden", "true");
-  document.body.style.transition = "1ms";
+  speed = 1.75;
 };
 medium.onclick = function () {
   lvl.innerHTML = "(MEDIUM)";
   levels.setAttribute("aria-hidden", "true");
-  document.body.style.transition = "0.1ms";
+  speed = 1.25;
 };
 hard.onclick = function () {
   lvl.innerHTML = "(HARD)";
   levels.setAttribute("aria-hidden", "true");
-  document.body.style.transition = "0.01ms";
+  speed = 0.75;
 };
 
 myButton.addEventListener("mouseover", function () {
   if (gameStarted) {
     let x = Math.floor(Math.random() * 70);
     let y = Math.floor(Math.random() * 90);
+
+    myButton.style.transition = `margin ${speed}s ease-in-out`;
     myButton.style.marginTop = x + "vh";
     myButton.style.marginLeft = y + "vh";
   }
@@ -119,3 +118,6 @@ statmenu.addEventListener("click", function () {
 restart.addEventListener("click", function () {
   gameStat.setAttribute("aria-hidden", "true");
 });
+
+// Apply the theme immediately when the page loads
+applyTheme();
