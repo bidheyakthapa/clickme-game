@@ -39,7 +39,7 @@ document.getElementById("levelopt").addEventListener("click", function () {
   }
 });
 
-let speed = 1;
+let speed;
 
 easy.onclick = function () {
   lvl.innerHTML = "(EASY)";
@@ -96,6 +96,7 @@ function startCountdown() {
       if (win > highScore) {
         highscore.innerHTML = win;
         highScore = win;
+        saveData();
       }
 
       win = 0;
@@ -119,5 +120,14 @@ restart.addEventListener("click", function () {
   gameStat.setAttribute("aria-hidden", "true");
 });
 
+function saveData() {
+  localStorage.setItem("data", highScore);
+}
+
+function showData() {
+  highscore.innerHTML = localStorage.getItem("data");
+}
+
 // Apply the theme immediately when the page loads
 applyTheme();
+showData();
